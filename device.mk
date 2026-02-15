@@ -15,14 +15,26 @@
 #
 
 # Inherit from the common tree
-$(call inherit-product, device/samsung/a21s-common/common.mk)
+$(call inherit-product, device/samsung/exynos850-common/common.mk)
 
 # Inherit proprietary files
-$(call inherit-product, vendor/samsung/a21s/a21s-vendor.mk)
+$(call inherit-product, vendor/samsung/a13/a13-vendor.mk)
+
+# Boot animation
+TARGET_SCREEN_HEIGHT := 2408
+TARGET_SCREEN_WIDTH := 1080
+
+# Display
+TARGET_SCREEN_DENSITY := 400
+
+# Graphics
+# Device uses high-density artwork where available
+PRODUCT_AAPT_PREF_CONFIG := 400dpi
 
 # Setup dalvik vm configs
 $(call inherit-product, frameworks/native/build/phone-xhdpi-4096-dalvik-heap.mk)
 
-# NFC configuration
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/nfc/libnfc-sec-vendor.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-sec-vendor.conf
+# WiFi
+PRODUCT_PACKAGES += \
+    WifiOverlay_a13
+
